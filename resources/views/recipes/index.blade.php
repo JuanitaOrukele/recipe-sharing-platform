@@ -1,6 +1,8 @@
 <?php
 @extends('layouts.app')
 
+@section('title', 'All Recipes')
+
 @section('content')
     <h1>Recipes</h1>
     <a href="{{ route('recipes.create') }}">Create Recipe</a>
