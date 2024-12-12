@@ -18,6 +18,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', [RecipeController::class, 'index'])->name('home');
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+Route::get('/recipes/{recipe}', [RecipeController::class, 'create'])->name('recipes.create');
+
+//Route::get('/create', [RecipeController::class, 'create'])->name('recipes.create');
+//Route::get('/recipes/{recipe}', [RecipeController::class, 'edit'])->name('recipes.edit');
+
+
 
 // Protected Routes
 Route::middleware(['auth'])->group(function () {

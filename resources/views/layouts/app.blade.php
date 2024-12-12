@@ -31,6 +31,17 @@
                 {{ session('success') }}
             </div>
         @endif
+        
+        <!-- Add this block for displaying errors -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </header>
     <main>
         @yield('content')

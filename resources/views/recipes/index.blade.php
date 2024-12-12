@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Recipes</h1>
-    <a href="{{ route('recipes.create') }}">Create Recipe</a>
+    <a href="{{ route('recipes.create') }}">Create Recip4e</a>
     <ul>
         @foreach ($recipes as $recipe)
             <li>
