@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Recipe;
-use App\Models\Comment;
-
-use Illuminate\Http\Request;
-
-class CommentController extends Controller
+public function store(Request $request, Recipe $recipe)
 {
-    public function store(Request $request, Recipe $recipe)
-    {
-        $request->validate([
-            'content' => 'required',
-        ]);
+    $request->validate([
+        'content' => 'required',
+    ]);
 
-        $comment = new Comment();
-        $comment->content = $request->content;
-        $comment->recipe_id = $recipe->id;
-        $comment->save();
-
-        return redirect()->route('recipes.show', $recipe)->with('success', 'Comment added successfully.');
+    // Check if user is logged in using your session data
+    if (!$request->session()->has('user_id')) {
+        return redirect('/login')->with('error', 'Please log in to comment.');
     }
+
+    $comment = Comment::create([
+        'content' => $request->content,
+        'recipe_id' => $recipe->id,
+        'user_id' => $request->session()->get('user_id'),
+    ]);
+
+    return redirect()->route('recipes.show', $recipe)->with('success', 'Comment added successfully.');
 }
-
-

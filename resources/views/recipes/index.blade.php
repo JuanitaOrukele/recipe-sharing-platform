@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'All Recipes')
@@ -9,7 +8,7 @@
     <ul>
         @foreach ($recipes as $recipe)
             <li>
-                <a href="{{ route('recipes.show', $recipe) }}">{{ $recipe->title }}</a>
+                <a href="{{ route('recipes.show', $recipe) }}">{{ $recipe->title }}</a> - by {{ optional($recipe->user)->username ?? 'Unknown User' }}
             </li>
         @endforeach
     </ul>

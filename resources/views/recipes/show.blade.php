@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', $recipe->title)
@@ -6,6 +5,13 @@
 @section('content')
     <h1>{{ $recipe->title }}</h1>
     <p>{{ $recipe->description }}</p>
+
+    @if ($recipe->image)
+        <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="max-width: 100%;">
+    @else
+        <p>No image available</p>
+    @endif
+
     <a href="{{ route('recipes.edit', $recipe) }}">Edit</a>
     <form action="{{ route('recipes.destroy', $recipe) }}" method="POST" style="display:inline;">
         @csrf
@@ -16,7 +22,7 @@
     <h2>Comments</h2>
     <ul>
         @foreach ($recipe->comments as $comment)
-            <li>{{ $comment->content }}</li>
+            <li>{{ $comment->content }} - by {{ $comment->user->username }}</li>
         @endforeach
     </ul>
 
@@ -28,4 +34,3 @@
         <button type="submit">Submit</button>
     </form>
 @endsection
-

@@ -16,6 +16,11 @@ class Recipe extends Model
         'image',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     // Define the relationship with comments
     public function comments()
     {

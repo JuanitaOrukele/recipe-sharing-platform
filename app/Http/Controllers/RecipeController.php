@@ -49,6 +49,7 @@ class RecipeController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'image' => $imagePath,
+            'user_id' => auth()->id(),
         ]);
 
         // Redirect to the recipes index with a success message
