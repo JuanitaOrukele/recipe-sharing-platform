@@ -20,7 +20,6 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        // Assuming you have a name field in your form
         $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
